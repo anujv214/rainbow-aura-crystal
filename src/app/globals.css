@@ -1,0 +1,235 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   ARVO STUDIO — Rainbow Aura Quartz Landing Page Theme
+   Dark luxury / mystical / crystal-inspired
+   ============================================================ */
+
+@theme inline {
+  /* Core colors mapped to custom crystal palette */
+  --color-background: var(--bg-onyx);
+  --color-foreground: var(--text-mist);
+
+  --color-card: var(--bg-card);
+  --color-card-foreground: var(--text-mist);
+  --color-popover: var(--bg-popover);
+  --color-popover-foreground: var(--text-mist);
+
+  --color-primary: var(--crystal-violet);
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: var(--bg-elevated);
+  --color-secondary-foreground: var(--text-mist);
+
+  --color-muted: var(--bg-elevated);
+  --color-muted-foreground: var(--text-dim);
+  --color-accent: var(--crystal-pink);
+  --color-accent-foreground: #ffffff;
+
+  --color-destructive: oklch(0.704 0.191 22.216);
+  --color-border: var(--border-soft);
+  --color-input: var(--border-soft);
+  --color-ring: var(--crystal-violet);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-mono: var(--font-inter), ui-monospace, monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Animations */
+  --animate-aura-spin: aura-spin 18s linear infinite;
+  --animate-aura-float: aura-float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+}
+
+:root {
+  /* === Premium dark mystical palette === */
+  --bg-onyx: #0a0510;          /* deep near-black with purple undertone */
+  --bg-elevated: #140a1f;      /* slightly elevated surface */
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --bg-popover: #140a1f;
+
+  --text-mist: #f5f0f7;        /* soft white-lavender for body */
+  --text-dim: rgba(245, 240, 247, 0.62);
+
+  --border-soft: rgba(255, 255, 255, 0.08);
+
+  /* Crystal / rainbow accents */
+  --crystal-violet: #a855f7;
+  --crystal-pink: #ec4899;
+  --crystal-cyan: #38bdf8;
+  --crystal-gold: #fbbf24;
+
+  /* Aura gradient stops */
+  --aura-1: #a855f7;
+  --aura-2: #ec4899;
+  --aura-3: #38bdf8;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background-color: var(--bg-onyx);
+    color: var(--text-mist);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* ============================================================
+   Reusable utility classes
+   ============================================================ */
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Rainbow aura text gradient (used sparingly for hero accent) */
+.text-aura {
+  background: linear-gradient(
+    100deg,
+    var(--aura-3) 0%,
+    var(--aura-1) 35%,
+    var(--aura-2) 70%,
+    var(--aura-1) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Aurora background — used as a soft glow behind hero */
+.aura-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.aura-bg::before,
+.aura-bg::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+.aura-bg::before {
+  width: 480px;
+  height: 480px;
+  top: -120px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, transparent 70%);
+  animation: aura-float 9s ease-in-out infinite;
+}
+.aura-bg::after {
+  width: 520px;
+  height: 520px;
+  top: 20%;
+  right: -120px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, transparent 70%);
+  animation: aura-float 11s ease-in-out infinite reverse;
+}
+
+/* Subtle starfield / sparkle dots */
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 78% 14%, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(1px 1px at 32% 68%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 88% 82%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 58% 38%, rgba(255, 255, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 22% 88%, rgba(255, 255, 255, 0.4), transparent);
+  background-repeat: no-repeat;
+}
+
+/* Premium CTA button — rainbow aura glow */
+.btn-aura {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(100deg, #a855f7 0%, #ec4899 50%, #fbbf24 100%);
+  background-size: 200% auto;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 0.25s ease, box-shadow 0.3s ease, background-position 0.6s ease;
+  box-shadow: 0 10px 40px -8px rgba(168, 85, 247, 0.55),
+              0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+.btn-aura:hover {
+  transform: translateY(-2px);
+  background-position: 100% 50%;
+  box-shadow: 0 18px 50px -8px rgba(236, 72, 153, 0.65),
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+.btn-aura:active {
+  transform: translateY(0);
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0510;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a855f7 0%, #ec4899 100%);
+  border-radius: 9999px;
+  border: 2px solid #0a0510;
+}
+
+/* Keyframes */
+@keyframes aura-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes aura-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-24px) scale(1.05); }
+}
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Hide scrollbars on horizontal carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Safe-area aware bottom spacing for sticky mobile CTA */
+.has-sticky-cta {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
