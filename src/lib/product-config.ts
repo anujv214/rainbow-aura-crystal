@@ -31,7 +31,7 @@ export const PRODUCT_CONFIG = {
    * DO NOT change unless updating the destination product.
    */
   shopifyUrl:
-    "https://anujverse.myshopify.com/products/hot-selling-stone-crystal-pillar-tree-of-life-pendant-ins-fashion-necklace?variant=50214906003713",
+    "https://anujverse.myshopify.com/products/crystal-pillar-tree-of-life-pendant-ins-fashion-necklace?variant=50214905970945",
 
   /* ---------- Hero / Reel video ----------
    * Direct MP4 URL of the Reel that brought visitors to the page.
